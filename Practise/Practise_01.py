@@ -61,7 +61,7 @@ print(f"- ASCII Sum: {ascii_sum}")
 print(f"\nPassword Strength: {strength}")
 
 if suggestions:
-    print("\nSuggestions to improve your password:")
+    print("\n Suggestions to improve your password:")
     for s in suggestions:
         print("• " + s)
 else:
