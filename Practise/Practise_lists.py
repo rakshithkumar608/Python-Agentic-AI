@@ -41,4 +41,22 @@ print(f"After removing : {car_brands}")
 
 #clear and Delete it clears all full list
 car_brands.clear()
+
 print(f"Clearing list : {car_brands}")
+
+
+
+                        OUTPUT
+The Most Popular Cars : ['BMW', 'Mercedes', 'Bugati', 'Lambo']
+The first element of the List is: BMW
+The element of the List is: ['Mercedes', 'Bugati']
+The first two element of the List is: ['BMW', 'Mercedes']
+The last two element of the List is: Bugati
+After Changing the element in list is: ['BMW', 'Mercedes', 'Bentley', 'Lambo']
+After inserting to the list:['BMW', 'Mercedes', 'Bentley', 'Aston martin', 'Lambo']
+After Adding element to the list : ['BMW', 'Mercedes', 'Bentley', 'Aston martin', 'Lambo', 'Rolls Royce']
+After Extending the list : ['BMW', 'Mercedes', 'Bugati', 'Lambo', 'fully charged', 'Turbo', 'Petrol', 'Disel']
+After removing the element from the list:['BMW', 'Mercedes', 'Lambo', 'fully charged', 'Turbo', 'Petrol', 'Disel']
+After pop: ['BMW', 'Mercedes', 'Lambo', 'fully charged', 'Turbo', 'Petrol']
+After removing : ['BMW', 'Mercedes', 'fully charged', 'Turbo', 'Petrol']
+Clearing list : []
