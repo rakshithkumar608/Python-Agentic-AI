@@ -60,3 +60,4 @@ After removing the element from the list:['BMW', 'Mercedes', 'Lambo', 'fully cha
 After pop: ['BMW', 'Mercedes', 'Lambo', 'fully charged', 'Turbo', 'Petrol']
 After removing : ['BMW', 'Mercedes', 'fully charged', 'Turbo', 'Petrol']
 Clearing list : []
+
