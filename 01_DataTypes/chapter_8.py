@@ -36,3 +36,20 @@ print(f"After Sorting: {car_specifications}")
 sugar_levels = [1,2,3,4,5]
 print(f"Maximum sugar level: {max(sugar_levels)}")
 print(f"Minimum sugar level: {min(sugar_levels)}")
+
+#Operator overloading
+base_liquid = ["water", "milk"]
+extra_flavoure = ["ginger"]
+
+full_liquid_mix = base_liquid + extra_flavoure
+print(f"Liquid Mix: {full_liquid_mix}")
+
+
+strong_brew = ["black tea", "water"] * 3
+print(f"Strong Brue: {strong_brew}")
+
+
+#Bytearray
+raw_spice_data = bytearray(b"CINNEMON")
+raw_spice_data = raw_spice_data.replace(b"CINNA", b"CARD")
+print(f"Bytes: {raw_spice_data}")
