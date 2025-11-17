@@ -1,0 +1,9 @@
+{
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python-envs.pythonProjects": [],
+  "python.defaultInterpreterPath": "C:\\Users\\MSI\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+  ,
+  "terminal.integrated.env.windows": {
+    "PATH": "${workspaceFolder}\\.vscode;${env:PATH}"
+  }
+}
