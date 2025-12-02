@@ -28,4 +28,5 @@ discounts = {
 for user in users:
   percent, fixed = discounts.get(user["coupon"], (0, 0))
   discount = user["total"] * percent + fixed
-  print(f"{user["id"]} paid {user["total"]} and got discount for next visit of rupees {discount}")
+
+ print(f"{user['id']} paid {user['total']} and got discount for next visit of rupees {discount}")
