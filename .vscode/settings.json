@@ -1,10 +1,10 @@
 {
   "python-envs.defaultEnvManager": "ms-python.python:system",
   "python-envs.pythonProjects": [],
-  "python.defaultInterpreterPath": "C:\\Users\\MSI\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
-  ,
+  "python.defaultInterpreterPath": "C:\\Users\\MSI\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
   "terminal.integrated.env.windows": {
     "PATH": "${workspaceFolder}\\.vscode;${env:PATH}"
   },
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "cSpell.words": ["Amit", "Jayanth", "masala", "Prajwal", "Rakshith", "Tulsi"]
 }
