@@ -6,5 +6,14 @@
     "PATH": "${workspaceFolder}\\.vscode;${env:PATH}"
   },
   "liveServer.settings.port": 5501,
-  "cSpell.words": ["Amit", "Jayanth", "masala", "Prajwal", "Rakshith", "Tulsi"]
+  "cSpell.words": [
+    "Amit",
+    "chais",
+    "Elaichi",
+    "Jayanth",
+    "masala",
+    "Prajwal",
+    "Rakshith",
+    "Tulsi"
+  ]
 }
