@@ -1,5 +1,5 @@
 {
-  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python-envs.defaultEnvManager": "ms-python.python:venv",
   "python-envs.pythonProjects": [],
   "python.defaultInterpreterPath": "C:\\Users\\MSI\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
   "terminal.integrated.env.windows": {
