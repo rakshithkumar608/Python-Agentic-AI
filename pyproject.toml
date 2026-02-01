@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-agentic-ai"
+version = "0.1.0"
+description = "Agentic AI learning project"
+authors = [{ name = "Rakshith" }]
+requires-python = ">=3.9"

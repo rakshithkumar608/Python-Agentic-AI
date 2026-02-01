@@ -1,0 +1,6 @@
+README.md
+pyproject.toml
+python_agentic_ai.egg-info/PKG-INFO
+python_agentic_ai.egg-info/SOURCES.txt
+python_agentic_ai.egg-info/dependency_links.txt
+python_agentic_ai.egg-info/top_level.txt
