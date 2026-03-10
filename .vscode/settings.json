@@ -1,0 +1,21 @@
+{
+  "python-envs.defaultEnvManager": "ms-python.python:venv",
+  "python-envs.pythonProjects": [],
+  "python.defaultInterpreterPath": "C:\\Users\\MSI\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "terminal.integrated.env.windows": {
+    "PATH": "${workspaceFolder}\\.vscode;${env:PATH}"
+  },
+  "liveServer.settings.port": 5501,
+  "cSpell.words": [
+    "Amit",
+    "chaicode",
+    "chais",
+    "Elaichi",
+    "Jayanth",
+    "masala",
+    "Matcha",
+    "Prajwal",
+    "Rakshith",
+    "Tulsi"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "Python: Current File (Integrated Terminal)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+
+      // FIX: force VS Code to use py instead of python
+      "python": "py",
+
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {}
+    },
+    {
+      "name": "Python: Module",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "",
+      "console": "integratedTerminal",
+
+      // FIX: apply same here
+      "python": "py",
+
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
