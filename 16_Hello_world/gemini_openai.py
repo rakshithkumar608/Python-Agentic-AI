@@ -10,6 +10,12 @@ response = client.chat.completions.create(
     model="gemini-2.5-flash",
     messages=[
         {
+        "role": "system",
+        "content": "You are an expert in Maths and only and only ans maths related questions"   
+        },
+        
+        
+        {
             "role" : "user",
             "content" : "Hey there everyone, who are you?"
         }
