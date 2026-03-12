@@ -1,86 +1,86 @@
-# Chain of thought Prompting
-
-
+# Auto Chain-of-Thought Reasoning Agent
 
 import os
+import json
+import time
 from dotenv import load_dotenv
 from google import genai
-
-import json
 
 load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 SYSTEM_PROMPT = """
-You are an expert AI Assistant in resolving user queries using chain of thought.
-You work on START, PLAN and Output steps.
-You need to first PLAN what needs to br done. The PLAN can be multiple steps.
-Once you think enough PLAN has been done, finally you can give an OUTPUT
+You are an expert reasoning AI assistant.
+
+You solve problems using the following reasoning steps:
+
+START → Understand the user problem
+PLAN → Think step-by-step (multiple times)
+OUTPUT → Final answer
 
 Rules:
-- Strictly Follow the given JSON output format
-- Only run one step at a time.
-- The sequence of steps is START (Where user gives an input), PLAN (That can br multiple times) and finally OUTPUT (which is going to the displayed to the user).
+- Always respond in JSON format
+- Only produce ONE step per response
+- Do NOT jump directly to OUTPUT unless reasoning is complete
+- Math and derivation problems must contain multiple PLAN steps
 
-Oupput JSON Format:
-{"step": "START" | "PLAN" | "OUTPUT", "content" : "string"}
-
-Example:
-START: Hey, can you solve 2 + 3 * 5 /10
-PLAN: {"step": "PLAN": "content": "Seems like user is intrested in math problem}
-PLAN: {"step":"PLAN":"content": "Lookinh at the problem, we should solve this using BODMAS method"}
-PLAN: {"step":"PLAN":"content": "Yes, The BODMAS is correct thing to be done here"}
-PLAN: {"step":"PLAN":"content": "first we must multiply 3 * 5 which is 15"}
-PLAN: {"step":"PLAN":"content": "Now the new question is 2 + 15 / 10"}
-PLAN: {"step":"PLAN":"content": "We must perform divide that is 15 / 10 = 1.5"}
-PLAN: {"step":"PLAN":"content": "Now the question is 2 + 1.5"}
-PLAN: {"step":"PLAN":"content": "Now finally lets perform the add 3.5"}
-PLAN: {"step":"PLAN":"content": "Great, we have solved and finally left with 3.5 as ans"}
-OUTPUT: {"step":"OUTPUT":"content": "3.5"}
+JSON Format:
+{"step":"START | PLAN | OUTPUT","content":"text explanation"}
 """
 
+print("\n")
 
+user_query = input("🚀 Enter the user input: ")
 
-USER_PROMPT = """
-Hey write a code to add n numbers in js
-{
-    "role": "assistant", "content": json.dumps({"step": "START", "content" : "User wants a JavaScript code snippet to add 'n' numbers."})
-}
+message_history = []
 
-{
-    "role": "assistant", "content": json.dumps({"step": "PLAN", "content" : "I should create a JavaScript function that takes an array of numbers as an argument."})
-}
+while True:
 
-{
-    "role": "assistant", "content": json.dumps({"step": "PLAN", "content" : "I will implement a flexible function using the rest parameter syntax to handle any number of arguments or an array."})
-}
-"""
-
-
-
-response = client.models.generate_content(
-    model="gemini-3-flash-preview",
-    contents=f"""
+    prompt = f"""
 {SYSTEM_PROMPT}
 
-User Question:
-{USER_PROMPT}
-""",
-config={
-    "response_mime_type": "application/json",
-    "response_schema": {
-        "type": "object",
-        "properties": {
-            "step":{
-                "type": "string",
-            },
-            "content": {
-                "type":"string"
-            }
-        }
-    }
-}
-)
+Previous Steps:
+{message_history}
 
-print(response.text)
+User Question:
+{user_query}
+"""
+
+  
+    response = client.models.generate_content(
+            model="gemini-3.1-pro-preview",
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json"
+            }
+        )
+
+
+    raw_result = response.text
+
+    try:
+        parsed = json.loads(raw_result)
+    except:
+        print("⚠️ Invalid JSON returned")
+        print(raw_result)
+        break
+
+    step = parsed.get("step")
+    content = parsed.get("content")
+
+    message_history.append(parsed)
+
+    if step == "START":
+        print("\n🔥 START")
+        print("Understanding:", content)
+
+    elif step == "PLAN":
+        print("\n🧠 PLAN")
+        print("Reasoning:", content)
+
+    elif step == "OUTPUT":
+        print("\n🤖 FINAL OUTPUT")
+        print("Answer:", content)
+        break
+
