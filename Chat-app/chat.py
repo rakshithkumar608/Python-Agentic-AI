@@ -73,14 +73,14 @@ def chat():
 
     user_input = user_input.strip()
 
-    # EXIT CONDITION (same as while True break)
+    
     if user_input.lower() in ["exit", "quit", "bye", "band"]:
         return jsonify({
             "reply": "Ok maga let's meet tomorrow 😎🤝 Take care!",
             "end": True
         })
     
-    # RESET CHAT
+    
     if user_input.lower() in ["reset", "clear"]:
         message_history = [
             {"role": "system", "content": SYSTEM_PROMPT}
@@ -90,7 +90,7 @@ def chat():
             "reply": "Chat reset aytu bro 🧹 start fresh!"
         })
 
-    # add user message
+    
     message_history.append({
         "role": "user",
         "content": user_input
@@ -108,7 +108,7 @@ def chat():
             "reply": "Server swalpa busy ide bro 😅 try again!"
         })
 
-    # add assistant reply
+    
     message_history.append({
         "role": "assistant",
         "content": reply
