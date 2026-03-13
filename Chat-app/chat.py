@@ -1,8 +1,11 @@
+from flask import Flask, render_template, request, jsonify
 import os
 from dotenv import load_dotenv
 from groq import Groq
 
 load_dotenv()
+
+app = Flask(__name__)
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -53,32 +56,68 @@ message_history = [
     {"role": "assistant", "content": "Good bro, just coding"}
 ]
 
-while True:
-    user_input = input("👤 Rakshith:")
-    
-    if user_input.lower() in ["exit", "quit", "bye", "band"]:
-        print("Kuchiku: Ok maga  let's meet tommarow Take Care!😘💗")
-        break
-    
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/chat", methods=["POST"])
+def chat():
+
+    global message_history
+
+    user_input = request.json.get("message")
+
     if not user_input:
-        continue
+        return jsonify({"reply": ""})
+
+    user_input = user_input.strip()
+
+    # EXIT CONDITION (same as while True break)
+    if user_input.lower() in ["exit", "quit", "bye", "band"]:
+        return jsonify({
+            "reply": "Ok maga let's meet tomorrow 😎🤝 Take care!",
+            "end": True
+        })
     
+    # RESET CHAT
+    if user_input.lower() in ["reset", "clear"]:
+        message_history = [
+            {"role": "system", "content": SYSTEM_PROMPT}
+        ]
+
+        return jsonify({
+            "reply": "Chat reset aytu bro 🧹 start fresh!"
+        })
+
+    # add user message
     message_history.append({
-        "role":"user",
+        "role": "user",
         "content": user_input
     })
-    
-    response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages=message_history
-    )
-    
-    reply = response.choices[0].message.content
-    
-    print("👥 Jayanth:", reply)
-    print()
-    
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=message_history
+        )
+
+        reply = response.choices[0].message.content
+
+    except Exception as e:
+        return jsonify({
+            "reply": "Server swalpa busy ide bro 😅 try again!"
+        })
+
+    # add assistant reply
     message_history.append({
         "role": "assistant",
         "content": reply
     })
+
+    return jsonify({
+        "reply": reply
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

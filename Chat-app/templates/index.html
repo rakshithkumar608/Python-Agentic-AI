@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            Kuchiku 💬
+        </div>
+
+        <div id="chat-box" class="chat-box"></div>
+
+        <div class="input-box">
+            <input id="message" placeholder="Type a message" />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            let input = document.getElementById("message")
+            let text = input.value
+
+            if(!text) return
+
+            let chatBox = document.getElementById("chat-box")
+
+            chatBox.innerHTML += `
+            <div class="user-msg">${text}</div>
+            `
+            input.value = ""
+
+            let respose = await fetch("/chat", {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body:JSON.stringify({message:text})
+            })
+
+            let data = await respose.json()
+
+            chatBox.innerHTML +=`<div class="bot-msg">${data.reply}</div>`
+
+            chatBox.scrollTop = chatBox.scrollHeight
+        }
+    </script>
+</body>
+</html>
