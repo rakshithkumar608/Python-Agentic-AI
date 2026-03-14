@@ -1,10 +1,14 @@
 import requests
 from openai import OpenAI
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
-client = OpenAI()
+client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
+)
 
 def get_weather(city: str):
     url = f"https://wttr.in/{city.lower()}?format=%C+%t"
@@ -19,8 +23,9 @@ def get_weather(city: str):
 
 def main():
     user_query = input(">")
+    
     response = client.chat.completions.create(
-        model = "gpt-4o",
+        model = "llama-3.1-8b-instant",
         messages=[
             {
             "role": "user",
