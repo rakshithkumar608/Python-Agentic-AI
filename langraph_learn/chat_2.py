@@ -70,4 +70,4 @@ updated_state = graph.invoke({
     "user_query": "Hey, What is an LLM and RAG used For?"
 })
 
-print(updated_state)
+print("\n\nupdated_state",updated_state)
